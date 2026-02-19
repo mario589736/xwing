@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Sternjäger Abenteuer - Anton & Valentin</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css?v=8">
+</head>
+<body>
+    <!-- Start Screen -->
+    <div id="start-screen">
+        <div class="title-container">
+            <h1>⭐ STERNJÄGER ABENTEUER ⭐</h1>
+            <p class="subtitle">Für Anton & Valentin</p>
+        </div>
+        
+        <!-- Pilot select hidden by default now -->
+        <div class="pilot-select hidden">
+        </div>
+
+        <div id="game-mode-select">
+            <h2>Was willst du spielen?</h2>
+            <button id="jaeger-mode-btn" class="game-mode-btn">
+                <span class="mode-icon">🚀</span>
+                <span class="mode-title">STERNJÄGER FLIEGEN</span>
+                <span class="mode-desc">Sammle Kristalle im Weltraum!</span>
+            </button>
+            <button id="force-mode-btn" class="game-mode-btn">
+                <span class="mode-icon">✨</span>
+                <span class="mode-title">STERNENKRAFT-TRAINING</span>
+                <span class="mode-desc">Hebe Steine wie ein Sternenkapitän!</span>
+            </button>
+            <button id="saber-mode-btn" class="game-mode-btn">
+                <span class="mode-icon">⚔️</span>
+                <span class="mode-title">ENERGIEKLINGE</span>
+                <span class="mode-desc">Trainiere wie ein Sternenkapitän!</span>
+            </button>
+        </div>
+
+        <div id="mode-select" class="hidden">
+            <h2>Steuerung wählen:</h2>
+            <button id="camera-mode-btn" class="mode-btn">📷 KAMERA</button>
+            <button id="touch-mode-btn" class="mode-btn">👆 TIPPEN</button>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="hidden">
+        <div id="game-header">
+            <button id="back-btn">⬅️</button>
+            <div id="score">⭐ 0</div>
+            <div id="crystals">💎 0</div>
+        </div>
+        
+        <canvas id="game-canvas"></canvas>
+        
+        <!-- Camera preview (small, corner) -->
+        <div id="camera-container" class="hidden">
+            <video id="camera" autoplay playsinline></video>
+        </div>
+        
+        <!-- Mission messages -->
+        <div id="mission-message" class="hidden"></div>
+        
+        <!-- Sternenkraft mode instructions -->
+        <div id="force-instructions" class="hidden">
+            <p>✋ Hand öffnen = Objekt greifen</p>
+            <p>✊ Hand schließen = Objekt loslassen</p>
+        </div>
+        
+        <!-- Celebration overlay -->
+        <div id="celebration" class="hidden">
+            <div class="celebration-content">
+                <h1>🎉 SUPER GEMACHT! 🎉</h1>
+                <p id="celebration-text"></p>
+                <button id="play-again-btn">🚀 NOCHMAL SPIELEN!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MediaPipe -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1646424915/hands.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1640029074/camera_utils.min.js"></script>
+    
+    <script src="game.js?v=9"></script>
+</body>
+</html>

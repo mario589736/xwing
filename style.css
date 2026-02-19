@@ -1,0 +1,389 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a0a20 0%, #1a1a3a 50%, #0a0a20 100%);
+    min-height: 100vh;
+    overflow: hidden;
+    color: #FFE81F; /* Star Wars yellow */
+}
+
+/* Start Screen */
+#start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+
+.title-container h1 {
+    font-size: clamp(2rem, 8vw, 4rem);
+    text-shadow: 0 0 20px #FFE81F, 0 0 40px #FFE81F;
+    margin-bottom: 10px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.subtitle {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    color: #87CEEB;
+    margin-bottom: 20px;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 20px #FFE81F, 0 0 40px #FFE81F; }
+    to { text-shadow: 0 0 30px #FFE81F, 0 0 60px #FFE81F, 0 0 80px #FFE81F; }
+}
+
+.pilot-select, #mode-select, #game-mode-select {
+    margin: 20px 0;
+}
+
+.pilot-select h2, #mode-select h2, #game-mode-select h2 {
+    font-size: clamp(1rem, 3.5vw, 1.4rem);
+    margin-bottom: 10px;
+    color: #87CEEB;
+}
+
+/* Game Mode Selection Buttons */
+#game-mode-select {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+.game-mode-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 260px;
+    max-width: 85vw;
+    padding: 15px 15px;
+    margin: 10px auto;
+    background: linear-gradient(145deg, #2a2a5a, #1a1a3a);
+    border: 3px solid #FFE81F;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.game-mode-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px #FFE81F;
+    background: linear-gradient(145deg, #3a3a7a, #2a2a5a);
+}
+
+.game-mode-btn:active {
+    transform: scale(0.98);
+}
+
+.game-mode-btn .mode-icon {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.game-mode-btn .mode-title {
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
+    font-weight: bold;
+    color: #FFE81F;
+    text-shadow: 0 0 10px #FFE81F;
+    margin-bottom: 3px;
+}
+
+.game-mode-btn .mode-desc {
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    color: #87CEEB;
+}
+
+#force-mode-btn {
+    border-color: #00FF88;
+}
+
+#force-mode-btn:hover {
+    box-shadow: 0 0 30px #00FF88;
+}
+
+#force-mode-btn .mode-title {
+    color: #00FF88;
+    text-shadow: 0 0 10px #00FF88;
+}
+
+#saber-mode-btn {
+    border-color: #00FF00;
+}
+
+#saber-mode-btn:hover {
+    box-shadow: 0 0 30px #00FF00;
+}
+
+#saber-mode-btn .mode-title {
+    color: #00FF00;
+    text-shadow: 0 0 10px #00FF00;
+}
+
+/* Force mode instructions */
+#force-instructions {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00FF88;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #00FF88;
+    z-index: 100;
+}
+
+#force-instructions p {
+    margin: 5px 0;
+}
+
+.pilot-btn, .mode-btn {
+    display: block;
+    width: 280px;
+    max-width: 90vw;
+    padding: 20px 40px;
+    margin: 15px auto;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-weight: bold;
+    color: #FFE81F;
+    background: linear-gradient(145deg, #2a2a5a, #1a1a3a);
+    border: 3px solid #FFE81F;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px #FFE81F;
+}
+
+.pilot-btn:hover, .mode-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px #FFE81F;
+    background: linear-gradient(145deg, #3a3a7a, #2a2a5a);
+}
+
+.pilot-btn:active, .mode-btn:active {
+    transform: scale(0.98);
+}
+
+/* Game Screen */
+#game-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#game-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+#game-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+    z-index: 100;
+}
+
+#pilot-name {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: #87CEEB;
+    font-weight: bold;
+}
+
+#back-btn {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #FFE81F;
+    border-radius: 10px;
+    color: #FFE81F;
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#back-btn:hover {
+    background: rgba(255, 232, 31, 0.2);
+    transform: scale(1.1);
+}
+
+#back-btn:active {
+    transform: scale(0.95);
+}
+
+#score, #crystals {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-weight: bold;
+    text-shadow: 0 0 10px currentColor;
+}
+
+#score { color: #FFE81F; }
+#crystals { color: #00BFFF; }
+
+/* Camera Preview */
+#camera-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 120px;
+    height: 90px;
+    border: 3px solid #FFE81F;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 100;
+    box-shadow: 0 0 20px rgba(255, 232, 31, 0.5);
+}
+
+#camera {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+/* Mission Message */
+#mission-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 3px solid #FFE81F;
+    border-radius: 15px;
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    text-align: center;
+    z-index: 200;
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* Celebration */
+#celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+}
+
+.celebration-content {
+    text-align: center;
+    animation: celebrateIn 0.5s ease-out;
+}
+
+@keyframes celebrateIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.celebration-content h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    margin-bottom: 20px;
+    animation: rainbow 2s linear infinite;
+}
+
+@keyframes rainbow {
+    0% { color: #FFE81F; }
+    25% { color: #FF6B6B; }
+    50% { color: #4ECDC4; }
+    75% { color: #A78BFA; }
+    100% { color: #FFE81F; }
+}
+
+#celebration-text {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    color: #87CEEB;
+    margin-bottom: 30px;
+}
+
+#play-again-btn {
+    padding: 20px 50px;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-weight: bold;
+    color: #000;
+    background: #FFE81F;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#play-again-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px #FFE81F;
+}
+
+/* Utility */
+.hidden {
+    display: none !important;
+}
+
+/* Stars background animation */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, white, transparent),
+        radial-gradient(2px 2px at 40px 70px, white, transparent),
+        radial-gradient(1px 1px at 90px 40px, white, transparent),
+        radial-gradient(2px 2px at 160px 120px, white, transparent),
+        radial-gradient(1px 1px at 230px 80px, white, transparent),
+        radial-gradient(2px 2px at 300px 150px, white, transparent),
+        radial-gradient(1px 1px at 370px 50px, white, transparent),
+        radial-gradient(2px 2px at 450px 180px, white, transparent);
+    background-size: 500px 200px;
+    animation: twinkle 5s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.5; }
+    50% { opacity: 1; }
+    to { opacity: 0.5; }
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    #camera-container {
+        width: 100px;
+        height: 75px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    #game-header {
+        padding: 10px 15px;
+    }
+}
